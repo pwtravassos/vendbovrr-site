@@ -108,3 +108,14 @@ footer {
 }
 
 footer p { margin: 4px 0; }
+
+.botao-loja {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 12px;
+  background: var(--verde);
+  color: var(--cartao);
+  font-weight: 700;
+  text-decoration: none;
+}
+.botao-loja:hover { filter: brightness(1.08); }
