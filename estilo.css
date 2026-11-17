@@ -119,3 +119,4 @@ footer p { margin: 4px 0; }
   text-decoration: none;
 }
 .botao-loja:hover { filter: brightness(1.08); }
+.lojas { display: flex; flex-wrap: wrap; gap: 10px; }
