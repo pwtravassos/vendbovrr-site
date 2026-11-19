@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<base href="/">
+<title>Baixar o VendBovRR</title>
+<meta name="description" content="Baixe grátis o VendBovRR, app de compra e venda de gado, cavalos e pasto em Roraima. Android e iPhone.">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body data-origem="baixar">
+<header>
+  <a class="marca" href="index.html"><svg viewBox="0 0 1024 1024" aria-hidden="true" class="logo"><rect x="4" y="4" width="1016" height="1016" rx="230" fill="#ffffff" stroke="#D3D1C7" stroke-width="8"/><text x="512" y="560" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="400" font-weight="700" fill="#173404" letter-spacing="-12">VB</text><rect x="372" y="640" width="280" height="150" rx="36" fill="#3B6D11"/><text x="512" y="756" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="112" font-weight="700" fill="#ffffff">RR</text></svg><span>VendBovRR</span></a>
+</header>
+<main>
+  <section class="destaque">
+    <h1>Baixe o VendBovRR grátis</h1>
+    <p>Gado, cavalos e aluguel de pasto em Roraima. Anunciar é grátis.</p>
+    <p class="lojas"><a class="botao-loja" data-loja="play" href="https://play.google.com/store/apps/details?id=br.com.vendbovrr.app">Baixar no Google Play</a> <a class="botao-loja" data-loja="apple" href="https://apps.apple.com/br/app/id6834629977">Baixar na App Store</a></p>
+    <p class="nota" id="abrindo" hidden>Abrindo a loja do seu celular... Se não abrir, toque no botão acima.</p>
+    <p class="nota" data-so-computador>Está no computador? Abra vendbovrr.com.br/baixar no celular.</p>
+  </section>
+</main>
+<script>
+(function () {
+  var ua = navigator.userAgent || '';
+  var android = /Android/i.test(ua);
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var q = new URLSearchParams(location.search);
+  var ref = [];
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) { if (q.get(k)) ref.push(k + '=' + q.get(k)); });
+  if (!ref.length) ref.push('utm_source=' + (document.body.dataset.origem || 'site'));
+  var play = 'https://play.google.com/store/apps/details?id=br.com.vendbovrr.app&referrer=' + encodeURIComponent(ref.join('&'));
+  var playApp = 'intent://details?id=br.com.vendbovrr.app&referrer=' + encodeURIComponent(ref.join('&')) +
+    '#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
+  var appstore = 'https://apps.apple.com/br/app/id6834629977';
+  window.VB_LOJA = { android: android, ios: ios, play: play, playApp: playApp, appstore: appstore };
+  document.querySelectorAll('[data-loja="play"]').forEach(function (a) { a.href = android ? playApp : play; if (ios) a.hidden = true; });
+  document.querySelectorAll('[data-loja="apple"]').forEach(function (a) { if (android) a.hidden = true; });
+  document.querySelectorAll('[data-so-computador]').forEach(function (e) { if (android || ios) e.hidden = true; });
+})();
+</script>
+<script>
+(function () {
+  var l = window.VB_LOJA;
+  if (!l || !(l.android || l.ios)) return;
+  document.getElementById('abrindo').hidden = false;
+  location.href = l.android ? l.playApp : l.appstore;
+})();
+</script>
+</body>
+</html>
